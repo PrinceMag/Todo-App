@@ -1,0 +1,214 @@
+#: import gch kivy.utils.get_color_from_hex
+#: import rgba kivy.utils.rgba
+#: import icon kivy.garden.iconfonts.icon
+
+<TodoCard>:
+    elevation:10
+    md_bg_color: 1, 1, 1 ,1
+    radius:[8]
+    size_hint_y:.1
+    
+    MDLabel:
+        text:"inventIT"
+        markup:True
+        font_name: "app/assets/fonts/Poppins-SemiBold.ttf"
+        font_size: "20sp"
+        size_hint_x:.8
+        pos_hint:{"center_x":.52,"center_y":.8}
+    MDCheckbox:
+        size_hint:None,None
+        size:"48dp","48dp"
+        unselected_color: 1, 170/255, 23/255 ,1
+        selected_color:0, 179/255, 0, 1
+        pos_hint:{"center_x":.05,"center_y":.8}
+    MDLabel:
+        id:description
+        text:"Login"
+        font_name:"app/assets/fonts/Poppins-Regular.ttf"
+        markup:True
+        size_hint_x:.9
+        line_height:.8
+        pos_hint:{"center_x":.66,"center_y":.4}
+
+<Content>
+    orientation: "vertical"
+    spacing: "12dp"
+    size_hint_y: None
+    height: "120dp"
+
+    MDTextField:
+        hint_text: "City"
+
+    MDTextField:
+        hint_text: "Street"
+
+
+
+
+<MainWindow>:
+    orientation:'vertical'
+    TopBar:
+        BoxLayout:
+            id: right_actions
+            orientation: 'horizontal'
+            padding: [0, (self.height - dp(48))/2]
+            MDIconButton:
+                icon:"apps"
+                theme_text_color: 'Custom'
+                text_color: gch("#e0e0e0")
+            MDLabel:
+                text:"Planner"
+                bold:True
+                color: gch("#e0e0e0")
+                size_hint_x:1.5
+        MDBoxLayout:
+            id: left_actions
+            orientation: 'horizontal'
+            padding: [0, (self.height - dp(48))/2]
+            padding: 20, 20, 20, 0
+            Widget:
+                size_hint_x:.8
+            MDIconButton:
+                icon:"cog"
+                theme_text_color: 'Custom'
+                text_color: gch("#e0e0e0")
+            MDIconButton:
+                icon:"help"
+                theme_text_color: 'Custom'
+                text_color: gch("#e0e0e0")
+            MDIconButton:
+                icon:"account"
+                theme_text_color: 'Custom'
+                text_color: gch("#e0e0e0")
+                
+
+    BoxLayout:
+        SideBar:
+            BoxLayout:
+                orientation:"vertical"
+                MDIconButton:
+                    icon:"menu"
+                Separator1:
+                MDIconButton:
+                    icon:"plus"
+                MDIconButton:
+                    icon:"circle-outline"
+                MDIconButton:
+                    icon:"account"
+                MDIconButton:
+                    icon:"chevron-up"
+                MDIconButton:
+                    icon:"chevron-up"
+                Widget:
+                Widget:
+        Separator2:
+        BoxLayout:
+            orientation:'vertical'
+            NavBar:
+                id: right_desc
+                orientation: 'horizontal'
+                padding: [0, (self.height - dp(48))/2]
+                MDLabel:
+                    id:description
+                    text:"IT Development"
+                    font_name:"app/assets/fonts/Poppins-Regular.ttf"
+                    markup:True
+                    size_hint_x:.9
+                    line_height:.8
+                    pos_hint:{"center_x":.51,"center_y":.4}
+            BoxLayout:
+                orientation:'vertical'
+                GridLayout:
+                    id: todo_list
+                    cols: 1
+                    padding:20,0
+                    BoxLayout:
+                        height:"50dp"
+                        size_hint_y:None
+                        MDLabel:
+                            id:description
+                            text:"User Bugs"
+                            font_name:"app/assets/fonts/Poppins-Regular.ttf"
+                            markup:True
+                            size_hint_x:.9
+                            line_height:.8
+                            pos_hint:{"center_x":.51,"center_y":.4}
+                    Add_TodoCard:
+                    ScrollView:
+                        do_scroll_y:True
+                        do_scroll_x:False
+                        size_hint_y:.75
+                        pos_hint:{"center_x":.5,"y":.0}
+                        bar_widget:5
+                        GridLayout:
+                            id: todo_list
+                            cols: 1
+                            height: self.minimum_height
+                            row_default_height: 80
+                            size_hint_y:None
+                            padding: 0,10
+                            spacing: 15,10
+                            TodoCard:
+                            TodoCard:
+                            FloatLayout:
+
+                                MDFlatButton:
+                                    text: "ALERT DIALOG"
+                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    on_release: app.show_confirmation_dialog()
+
+
+
+
+
+<TopBar@MDBoxLayout>:
+    orientation: 'horizontal'
+    id:TopBar
+    md_bg_color:gch("#484644")
+    size_hint_y:None
+    height:"50dp"
+    
+<NavBar@MDBoxLayout>:
+    orientation: 'horizontal'
+    id:NavBar
+    md_bg_color:gch("#FFFFFF")
+    size_hint_y:None
+    height:"50dp"
+
+<SideBar@MDBoxLayout>:
+    orientation: 'vertical'
+    id:SideBar
+    md_bg_color:gch("#FFFFFF")
+    width:"55dp"
+    size_hint_x:None
+
+<Separator1@MDLabel>:
+    height:"2dp"
+    md_bg_color: gch("#edebe9")
+    size_hint_y:None
+
+<Separator2@MDBoxLayout>:
+    width:"2dp"
+    md_bg_color: gch("#edebe9")
+    size_hint_x:None
+
+<Add_TodoCard@MDBoxLayout>:
+    height:"50dp"
+    size_hint_y:None
+    elevation:10
+    md_bg_color: 1, 1, 1 ,1
+    radius:[8]
+    MDIconButton:
+        icon:"plus"
+        size_hint:None,None
+        size:"88dp","88dp"
+        pos_hint:{"center_x":.1,"center_y":.5}
+    MDLabel:
+        text:"Add Task"
+        font_name:"app/assets/fonts/Poppins-Regular.ttf"
+        markup:True
+        size_hint_x:.9
+        line_height:.8
+        pos_hint:{"center_x":.7,"center_y":.4}
+
+
